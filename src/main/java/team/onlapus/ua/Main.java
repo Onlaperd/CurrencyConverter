@@ -1,26 +1,37 @@
 package team.onlapus.ua;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    public static double UAH = 40.47;
-    public static double PLN = 4.04;
-    public static double GBR = 0.78;
-    public static double EUR = 0.93;
-    public static double SEK = 10.49;
-    public static double USD = 1;
+    public static String[] currencyNameCollection = {"USD", "UAH", "PLN", "GBR", "EUR", "SEK"};
 
     public static void main(String[] args) {
 
+        Map<String, Double> currencyCollection = new HashMap<>();
+        currencyCollection.put("USD", 1.0);
+        currencyCollection.put("UAH", 40.74);
+        currencyCollection.put("PLN", 4.04);
+        currencyCollection.put("GBR", 0.78);
+        currencyCollection.put("EUR", 0.93);
+        currencyCollection.put("SEK", 10.49);
+        currencyCollection.put("JPY", 157.07);
+        currencyCollection.put("MXN", 18.59);
+        currencyCollection.put("TRY", 32.3);
+        currencyCollection.put("BGN", 1.81);
+        currencyCollection.put("RON", 4.61);
+
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Currency Converter v1.0");
+        System.out.println("Welcome to Currency Converter v1.1");
 
         while (true){
             try{
-                iteration();
+                iteration(scanner, currencyCollection);
             } catch (NoCurrencyFoundException e){
                 System.out.println("ERROR: " + e.getMessage());
+            } catch (InputMismatchException e){
+                System.out.println("ERROR: Impossible input");
             }
 
             System.out.print("to continue press [ENTER], to exit press x and then [ENTER]\n> ");
@@ -33,24 +44,30 @@ public class Main {
 
     }
 
-    public static void iteration() throws NoCurrencyFoundException {
+    public static void iteration(Scanner scanner, Map<String, Double> currencyCollection)
+            throws NoCurrencyFoundException, InputMismatchException {
 
         System.out.println();
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("convert from UAH/PLN/GBR/EUR/SEK/USD: ");
+        System.out.print("convert from\n " + Actions.printArray(currencyNameCollection) + "\n> ");
         String from = scanner.nextLine().replace(" ", "").toUpperCase();
 
-        double fromAgr = Actions.getCurrencyValue(from);
+        Actions.validate(from, currencyNameCollection);
+        Double fromAgr = currencyCollection.get(from);
 
-        System.out.print("convert to UAH/PLN/GBR/EUR/SEK/USD: ");
+        System.out.print("convert to\n " + Actions.printArray(currencyNameCollection) + "\n> ");
         String to = scanner.nextLine().replace(" ", "").toUpperCase();
 
-        double toAgr = Actions.getCurrencyValue(to);
+        Actions.validate(to, currencyNameCollection);
+        Double toAgr = currencyCollection.get(to);
 
         System.out.print("amount: ");
-        double amount = scanner.nextDouble();
+        double amount;
+        try{
+            amount = scanner.nextDouble();
+        } catch (InputMismatchException e){
+            throw new InputMismatchException();
+        }
 
 
         System.out.println(amount + from + " is " + Actions.convert(fromAgr, toAgr, amount) + to);

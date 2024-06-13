@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>team.onlapus.ua.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
