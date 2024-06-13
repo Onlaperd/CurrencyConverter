@@ -15,11 +15,11 @@ public class Actions {
     public static double convert(double from, double to, double amount){
         return round(amount/(from/to), 2);
     }
-    public static String printArray(String[] array){
+    public static String printArray(Currency[] array){
         StringBuilder result = new StringBuilder();
 
-        for (String s : array){
-            result.append(s).append("/");
+        for (Currency s : array){
+            result.append(s.getName()).append("/");
         }
 
         return result.toString();

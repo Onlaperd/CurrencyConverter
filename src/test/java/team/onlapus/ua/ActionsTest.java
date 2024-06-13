@@ -38,7 +38,10 @@ public class ActionsTest {
     }
     @Test
     public void test_printArray(){
-        Assertions.assertEquals("a/b/c/d/", Actions.printArray(new String[]{"a", "b", "c", "d"}));
+        Assertions.assertEquals("a/b/", Actions.printArray(new Currency[]{
+                new Currency(0, "a"),
+                new Currency(0, "b")
+        }));
     }
     @Test
     public void test_validate() throws NoCurrencyFoundException {
