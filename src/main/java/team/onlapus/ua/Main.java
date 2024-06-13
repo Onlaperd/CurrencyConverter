@@ -36,7 +36,8 @@ public class Main {
             }
 
             System.out.print("to continue press [ENTER], to exit press x and then [ENTER]\n> ");
-            String userChoice = scanner.nextLine();
+
+            String userChoice = scanner.next();
 
             if (userChoice.equals("x")){
                 break;
