@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Main {
 
-    public static String[] currencyNameCollection = {"USD", "UAH", "PLN", "GBR", "EUR", "SEK"};
+    public static String[] currencyNameCollection =
+            {"USD", "UAH", "PLN", "GBR", "EUR", "SEK",  "JPY", "MXN", "TRY", "BGN", "RON",};
 
     public static void main(String[] args) {
 

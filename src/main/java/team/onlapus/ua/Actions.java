@@ -12,8 +12,9 @@ public class Actions {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-    public static double convert(double from, double to, double amount){return round(amount/(from/to), 2);}
-
+    public static double convert(double from, double to, double amount){
+        return round(amount/(from/to), 2);
+    }
     public static String printArray(String[] array){
         StringBuilder result = new StringBuilder();
 
@@ -23,7 +24,6 @@ public class Actions {
 
         return result.toString();
     }
-
     public static boolean validate(String toFind, String[] array) throws NoCurrencyFoundException {
 
         for (String elem : array){
