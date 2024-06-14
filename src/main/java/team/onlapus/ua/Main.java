@@ -54,27 +54,12 @@ public class Main {
         System.out.print("convert from\n " + Actions.printArray(currencyCollection) + "\n> ");
         String from = scanner.nextLine().replace(" ", "").toUpperCase();
 
-        Actions.validate(from, Actions.printArray(currencyCollection).split("/"));
-
-        double fromAgr = -1;
-        for(Currency currency : currencyCollection){
-            if (currency.getName().equals(from)){
-                fromAgr = currency.getValue();
-                break;
-            }
-        }
+        double fromAgr = Actions.validateAndSet(from, currencyCollection);
 
         System.out.print("convert to\n " + Actions.printArray(currencyCollection) + "\n> ");
         String to = scanner.nextLine().replace(" ", "").toUpperCase();
 
-        Actions.validate(to, Actions.printArray(currencyCollection).split("/"));
-        double toAgr = -1;
-        for(Currency currency : currencyCollection){
-            if (currency.getName().equals(to)){
-                toAgr = currency.getValue();
-                break;
-            }
-        }
+        double toAgr = Actions.validateAndSet(to, currencyCollection);
 
         System.out.print("amount: ");
         double amount;

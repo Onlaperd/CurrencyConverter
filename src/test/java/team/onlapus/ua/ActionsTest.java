@@ -44,8 +44,12 @@ public class ActionsTest {
         }));
     }
     @Test
-    public void test_validate() throws NoCurrencyFoundException {
-        Assertions.assertTrue(Actions.validate("a", new String[]{"a", "b", "c", "d"}));
+    public void test_validateAndSet() throws NoCurrencyFoundException {
+        Assertions.assertEquals(2, Actions.validateAndSet("b", new Currency[]{
+                new Currency(1, "a"),
+                new Currency(2, "b"),
+                new Currency(3, "c")
+        }));
     }
 
     @AfterAll

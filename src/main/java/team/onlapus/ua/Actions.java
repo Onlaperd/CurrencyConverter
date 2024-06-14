@@ -2,6 +2,7 @@ package team.onlapus.ua;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 public class Actions {
 
@@ -24,16 +25,31 @@ public class Actions {
 
         return result.toString();
     }
-    public static boolean validate(String toFind, String[] array) throws NoCurrencyFoundException {
+    public static double validateAndSet(String toFind, Currency[] currencyCollection) throws NoCurrencyFoundException {
+
+        boolean result = false;
+        ArrayList<String> array = new ArrayList<>();
+
+        for (Currency currency : currencyCollection){
+            array.add(currency.getName());
+        }
 
         for (String elem : array){
             if (elem.equals(toFind)) {
-                return true;
+                result = true;
+                break;
             }
+        } if (result){
+            for(Currency currency : currencyCollection){
+                if (currency.getName().equals(toFind)){
+                    return currency.getValue();
+                }
+            }
+        } else {
+            throw new NoCurrencyFoundException("No currency found");
         }
 
-        throw new NoCurrencyFoundException("No currency found");
-
+        return -1;
     }
 
 
