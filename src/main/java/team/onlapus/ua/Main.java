@@ -7,7 +7,7 @@ public class Main {
     public static Currency[] currencyCollection =
             {
                     new Currency(1, "USD"),
-                    new Currency(40.74, "UAH"),
+                    new Currency(40.97, "UAH"),
                     new Currency(4.04, "PLN"),
                     new Currency(0.78, "GBR"),
                     new Currency(0.93, "EUR"),

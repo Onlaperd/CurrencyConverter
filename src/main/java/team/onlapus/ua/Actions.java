@@ -2,7 +2,7 @@ package team.onlapus.ua;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Actions {
 
@@ -28,8 +28,8 @@ public class Actions {
     public static double validateAndSet(String toFind, Currency[] currencyCollection) throws NoCurrencyFoundException {
 
         boolean result = false;
-        ArrayList<String> array = new ArrayList<>();
 
+        LinkedList<String> array = new LinkedList<>();
         for (Currency currency : currencyCollection){
             array.add(currency.getName());
         }
@@ -39,7 +39,8 @@ public class Actions {
                 result = true;
                 break;
             }
-        } if (result){
+        }
+        if (result){
             for(Currency currency : currencyCollection){
                 if (currency.getName().equals(toFind)){
                     return currency.getValue();
