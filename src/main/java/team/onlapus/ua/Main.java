@@ -5,12 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
 
 public class Main {
 
@@ -22,10 +21,7 @@ public class Main {
 
         try {
             currencyCollection = Request.setCurrencyCollection(APIKEY);
-        } catch (InterruptedException e) {
-            System.out.println("Error! try to update program\n" +
-                    "if it didn't helped then server is down or changed its domain");
-        } catch (URISyntaxException | NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("Error! your API KEY is invalid");
         } catch (IOException e) {
             System.out.println("Error! there is problems with Internet connection or program failed to connect to the server");
@@ -122,18 +118,18 @@ public class Main {
 
     public static boolean validateAPI(String apiKey) {
         try {
-            HttpClient client = HttpClient.newHttpClient();
+            String apiUrl = "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=" + apiKey;
+            HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
+            connection.setRequestMethod("GET");
 
-            HttpRequest getRequest = HttpRequest.newBuilder()
-                    .uri(new URI("https://api.currencyfreaks.com/v2.0/rates/latest?apikey=" + apiKey))
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
 
-            return response.statusCode() != 401;
-        } catch (URISyntaxException | IOException | InterruptedException e) {
+            return responseCode != 401;
+        } catch (IOException e) {
             return false;
         }
     }
+
 
 }

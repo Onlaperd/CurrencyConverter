@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="831546f7-c464-4b11-87a1-22082d24d474" name="Changes" comment="optimization, added most currencies of the world, updating exchange course.&#10;&#10;small refactoring. to get currencies use the website https://api.currencyfreaks.com">
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Actions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/CurrencyClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/NoCurrencyFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/NoCurrencyFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/team/onlapus/ua/ActionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/team/onlapus/ua/ActionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718352672415</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="optimization, added most currencies of the world, updating exchange course.&#10;&#10;small refactoring. to get currencies use the website https://api.currencyfreaks.com">
+      <option name="closed" value="true" />
+      <created>1720962035035</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1720962035035</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
