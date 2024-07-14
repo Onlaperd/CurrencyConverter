@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="831546f7-c464-4b11-87a1-22082d24d474" name="Changes" comment="optimization.&#10;&#10;refactored and updated method validate to validateAndSet">
+    <list default="true" id="831546f7-c464-4b11-87a1-22082d24d474" name="Changes" comment="optimization, added most currencies of the world, updating exchange course.&#10;&#10;small refactoring. to get currencies use the website https://api.currencyfreaks.com">
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Actions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/CurrencyClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/NoCurrencyFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/onlapus/ua/NoCurrencyFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/team/onlapus/ua/ActionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/team/onlapus/ua/ActionsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="CurrencyClass" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,28 +48,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ActionsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MainTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [validate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.CurrencyConverter [verify].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;app.teamhub.selectedTeam&quot;: &quot;github.com/Onlaperd/CurrencyConverter&quot;,
-    &quot;app.teamhub.trackedBranches&quot;: &quot;pjerj2/master&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;CurrencyClass&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/my programs/java/projects/CurrencyConverter&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CurrencyDemo.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Request.executor": "Run",
+    "JUnit.ActionsTest.executor": "Run",
+    "JUnit.MainTest.executor": "Run",
+    "Maven.CurrencyConverter [clean].executor": "Run",
+    "Maven.CurrencyConverter [compile].executor": "Run",
+    "Maven.CurrencyConverter [install].executor": "Run",
+    "Maven.CurrencyConverter [package].executor": "Run",
+    "Maven.CurrencyConverter [test].executor": "Run",
+    "Maven.CurrencyConverter [validate].executor": "Run",
+    "Maven.CurrencyConverter [verify].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "app.teamhub.selectedTeam": "github.com/Onlaperd/CurrencyConverter",
+    "app.teamhub.trackedBranches": "pjerj2/master",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/my programs/java/projects/CurrencyConverter"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\my programs\java\projects\CurrencyConverter\src\test\java" />
@@ -161,6 +168,7 @@
     <MESSAGE value="expanded .gitignore" />
     <MESSAGE value="optimization. Fixed Huge bugs&#10;&#10;added class Currency&#10;fixed Scanner input" />
     <MESSAGE value="optimization.&#10;&#10;refactored and updated method validate to validateAndSet" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimization.&#10;&#10;refactored and updated method validate to validateAndSet" />
+    <MESSAGE value="optimization, added most currencies of the world, updating exchange course.&#10;&#10;small refactoring. to get currencies use the website https://api.currencyfreaks.com" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimization, added most currencies of the world, updating exchange course.&#10;&#10;small refactoring. to get currencies use the website https://api.currencyfreaks.com" />
   </component>
 </project>

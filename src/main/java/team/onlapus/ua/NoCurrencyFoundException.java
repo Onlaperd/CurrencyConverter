@@ -1,6 +1,6 @@
 package team.onlapus.ua;
 
-public class NoCurrencyFoundException extends Exception{
+public class NoCurrencyFoundException extends Exception {
 
     private final String message;
 

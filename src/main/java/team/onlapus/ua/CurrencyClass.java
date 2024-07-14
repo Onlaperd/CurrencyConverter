@@ -1,12 +1,11 @@
 package team.onlapus.ua;
 
-public class Currency {
+public class CurrencyClass {
 
     private final double value;
     private final String name;
 
-
-    public Currency(double value, String name) {
+    public CurrencyClass(double value, String name) {
         this.value = value;
         this.name = name;
     }

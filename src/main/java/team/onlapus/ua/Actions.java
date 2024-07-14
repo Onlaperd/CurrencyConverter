@@ -2,6 +2,7 @@ package team.onlapus.ua;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Actions {
@@ -13,37 +14,30 @@ public class Actions {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-    public static double convert(double from, double to, double amount){
-        return round(amount/(from/to), 2);
-    }
-    public static String printArray(Currency[] array){
-        StringBuilder result = new StringBuilder();
 
-        for (Currency s : array){
-            result.append(s.getName()).append("/");
-        }
-
-        return result.toString();
+    public static double convert(double from, double to, double amount) {
+        return round(amount / (from / to), 2);
     }
-    public static double validateAndSet(String toFind, Currency[] currencyCollection) throws NoCurrencyFoundException {
+
+    public static double validateAndSet(String toFind, ArrayList<CurrencyClass> currencyClassCollection) throws NoCurrencyFoundException {
 
         boolean result = false;
 
         LinkedList<String> array = new LinkedList<>();
-        for (Currency currency : currencyCollection){
-            array.add(currency.getName());
+        for (CurrencyClass currencyClass : currencyClassCollection) {
+            array.add(currencyClass.getName());
         }
 
-        for (String elem : array){
+        for (String elem : array) {
             if (elem.equals(toFind)) {
                 result = true;
                 break;
             }
         }
-        if (result){
-            for(Currency currency : currencyCollection){
-                if (currency.getName().equals(toFind)){
-                    return currency.getValue();
+        if (result) {
+            for (CurrencyClass currencyClass : currencyClassCollection) {
+                if (currencyClass.getName().equals(toFind)) {
+                    return currencyClass.getValue();
                 }
             }
         } else {

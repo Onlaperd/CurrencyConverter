@@ -1,36 +1,42 @@
 package team.onlapus.ua;
 
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.*;
 
 public class Main {
 
-    public static Currency[] currencyCollection =
-            {
-                    new Currency(1, "USD"),
-                    new Currency(40.97, "UAH"),
-                    new Currency(4.04, "PLN"),
-                    new Currency(0.78, "GBR"),
-                    new Currency(0.93, "EUR"),
-                    new Currency(10.49, "SEK"),
-                    new Currency(157.07, "JPY"),
-                    new Currency(18.59, "MXN"),
-                    new Currency(32.3, "TRY"),
-                    new Currency(1.81, "BGN"),
-                    new Currency(4.61, "RON"),
-                    new Currency(369.82, "HUF")
-                    };
-
     public static void main(String[] args) {
 
+        final String APIKEY = getAPI();
+        ArrayList<CurrencyClass> currencyCollection = null;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Currency Converter v1.1");
 
-        while (true){
-            try{
+        try {
+            currencyCollection = Request.setCurrencyCollection(APIKEY);
+        } catch (InterruptedException e) {
+            System.out.println("Error! try to update program\n" +
+                    "if it didn't helped then server is down or changed its domain");
+        } catch (URISyntaxException | NullPointerException e) {
+            System.out.println("Error! your API KEY is invalid");
+        } catch (IOException e) {
+            System.out.println("Error! there is problems with Internet connection or program failed to connect to the server");
+        }
+
+        while (true) {
+            try {
                 iteration(scanner, currencyCollection);
-            } catch (NoCurrencyFoundException e){
+            } catch (NoCurrencyFoundException e) {
                 System.out.println("ERROR: " + e.getMessage());
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 scanner.nextLine();
                 System.out.println("ERROR: Impossible input");
             }
@@ -39,39 +45,95 @@ public class Main {
 
             String userChoice = scanner.nextLine();
 
-            if (userChoice.equals("x")){
+            if (userChoice.equalsIgnoreCase("x") || userChoice.equalsIgnoreCase("exit")) {
                 break;
             }
         }
 
     }
 
-    public static void iteration(Scanner scanner, Currency[] currencyCollection)
+    public static void iteration(Scanner scanner, ArrayList<CurrencyClass> currencyClassCollection)
             throws NoCurrencyFoundException, InputMismatchException {
 
         System.out.println();
 
-        System.out.print("convert from\n " + Actions.printArray(currencyCollection) + "\n> ");
+        System.out.print("convert from\n(write here currency code such as USD or EUR) " + "\n> ");
         String from = scanner.nextLine().replace(" ", "").toUpperCase();
 
-        double fromAgr = Actions.validateAndSet(from, currencyCollection);
+        double fromAgr = Actions.validateAndSet(from, currencyClassCollection);
 
-        System.out.print("convert to\n " + Actions.printArray(currencyCollection) + "\n> ");
+        System.out.print("convert to\n(write here currency code such as USD or EUR) " + "\n> ");
         String to = scanner.nextLine().replace(" ", "").toUpperCase();
 
-        double toAgr = Actions.validateAndSet(to, currencyCollection);
+        double toAgr = Actions.validateAndSet(to, currencyClassCollection);
 
         System.out.print("amount: ");
         double amount;
-        try{
+        try {
             amount = scanner.nextDouble();
             scanner.nextLine();
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             throw new InputMismatchException();
         }
 
         System.out.println(amount + from + " is " + Actions.convert(fromAgr, toAgr, amount) + to);
 
+    }
+
+    public static String getAPI() {
+
+        String filePath = "src/main/java/team/onlapus/ua/API_KEY";
+
+        try (Scanner inputStream = new Scanner(new FileReader(filePath))) {
+            return inputStream.nextLine();
+        } catch (FileNotFoundException e) {
+
+            String result;
+
+            System.out.print("hello! This program requires API key specifically from the website " +
+                    "https://api.currencyfreaks.com , if you haven't one you can create it for free! " +
+                    "thanks.\n");
+
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.print("Enter your api key: ");
+                result = scanner.nextLine();
+
+                if (validateAPI(result)) {
+                    break;
+                }
+
+                System.out.println("Error! invalid API key or server is inaccessible now");
+
+            }
+
+
+            try (FileWriter outputStream = new FileWriter(filePath)) {
+                outputStream.write(result);
+            } catch (IOException ex) {
+                System.out.println("Oops.. Unexpected error! error message:\n" + ex.getMessage());
+            }
+
+            return result;
+
+        }
+
+    }
+
+    public static boolean validateAPI(String apiKey) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.currencyfreaks.com/v2.0/rates/latest?apikey=" + apiKey))
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+
+            return response.statusCode() != 401;
+        } catch (URISyntaxException | IOException | InterruptedException e) {
+            return false;
+        }
     }
 
 }

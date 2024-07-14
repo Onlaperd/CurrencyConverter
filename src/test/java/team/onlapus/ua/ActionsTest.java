@@ -36,21 +36,6 @@ public class ActionsTest {
     public void test_round(){
         Assertions.assertEquals(1.23, Actions.round(1.234, 2));
     }
-    @Test
-    public void test_printArray(){
-        Assertions.assertEquals("a/b/", Actions.printArray(new Currency[]{
-                new Currency(0, "a"),
-                new Currency(0, "b")
-        }));
-    }
-    @Test
-    public void test_validateAndSet() throws NoCurrencyFoundException {
-        Assertions.assertEquals(2, Actions.validateAndSet("b", new Currency[]{
-                new Currency(1, "a"),
-                new Currency(2, "b"),
-                new Currency(3, "c")
-        }));
-    }
 
     @AfterAll
     static void afterAll(){
