@@ -1,1 +1,1 @@
-Simple Currency converter that uses [servicename] API.
+Simple Currency converter that uses currencyfreaks.com API.
